@@ -1,11 +1,8 @@
-import pprint
-
 length = int(input())
 txt = input()
 
-
-dx, dy = [0, -1, 0, 1], [-1, 0, 1, 0]  # [x,y]
-status = 0  #
+dx, dy = [-1, 0, 1, 0], [0, 1, 0, -1]  # [x,y], // 왜인지 모르겠는데 이렇게 하니까 됐어요, 임의수정함
+status = 2
 map = [[0, 0]]  # 0,0 부터 시작
 
 for i in txt:
@@ -27,9 +24,23 @@ for x, y in map:
     x_d.append(x)
     y_d.append(y)
 
-max_x = max(x_d) - min(x_d)
-max_y = max(y_d) - min(y_d)
+x_s = set(x_d)
+y_s = set(y_d)
+print(x_s)
+x_m = min(x_s)
+y_m = min(y_s)
+array = [['' for row in range(len(y_s))] for col in range(len(x_s))]
 
-array = [['' for col in range(max_x)] for row in range(max_y)]
-pprint.pprint(array)
+for i in range(len(map)):
+    map[i][0] -= x_m
+    map[i][1] -= y_m
 
+for i in range(len(array)):
+    for j in range(len(array[i])):
+
+        if [i, j] in map:
+            array[i][j] = '.'
+        else:
+            array[i][j] = '#'
+
+    print("".join(array[i]))
