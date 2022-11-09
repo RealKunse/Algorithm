@@ -1,5 +1,6 @@
 from itertools import combinations
-
+import math
+print(math.e)
 
 def isPrimeNumber(i):
     prime_list = []
